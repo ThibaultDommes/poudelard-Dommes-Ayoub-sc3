@@ -1,3 +1,10 @@
+from utils.input_utils import demander_choix
+
+def initialiser_maisons(liste_noms):
+    maisons = {}
+    for nom in liste_noms:
+        maisons[nom] = 0
+    return maisons
 def actualiser_points_maison(maisons, nom_maison, points):
     if nom_maison in maisons:
         maisons[nom_maison] = maisons[nom_maison] + points
