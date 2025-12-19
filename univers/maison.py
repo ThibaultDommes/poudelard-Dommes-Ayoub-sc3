@@ -28,3 +28,47 @@ def afficher_maison_gagnante(maisons):
         print("Maisons ex æquo :")
         for nom in gagnantes:
             print(" -", nom)
+
+def repartition_maison(joueur, questions):
+
+    scores = {
+        "Gryffondor": 0,
+        "Serpentard": 0,
+        "Poufsouffle": 0,
+        "Serdaigle": 0
+    }
+
+    attributs = joueur["Attributs"]
+    scores["Gryffondor"] = scores["Gryffondor"] + attributs["courage"]
+    scores["Serpentard"] = scores["Serpentard"] + attributs["ambition"]
+    scores["Poufsouffle"] = scores["Poufsouffle"] + attributs["loyaute"]
+    scores["Serdaigle"] = scores["Serdaigle"] + attributs["intelligence"]
+
+    for q in questions:
+        texte_q = q["texte"]
+        options = q["options"]
+        maisons_associees = q["maisons"]
+
+        reponse = demander_choix(texte_q, options)
+
+        index = 0
+        while index < len(options) and options[index] != reponse:
+            index = index + 1
+
+        if index < len(maisons_associees):
+            maison = maisons_associees[index]
+            scores[maison] = scores[maison] + 3
+
+    maison_finale = None
+    max_points = None
+    for nom in scores:
+        pts = scores[nom]
+        if max_points is None or pts > max_points:
+            max_points = pts
+            maison_finale = nom
+
+    print("Scores de répartition :")
+    for nom in scores:
+        print("-", nom, ":", scores[nom], "points")
+
+    return maison_finale
