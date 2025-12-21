@@ -19,7 +19,6 @@ def demander_texte(message):
                 print("Le texte ne doit pas contenir de chiffres.")
                 texte = input(message)
             else:
-                # La saisie est valide
                 valide = True
 
     return texte
@@ -43,7 +42,6 @@ def demander_nombre(message, min_val, max_val):
     valide = False
 
     while valide == False:
-        # Vérifier que la saisie n'est pas vide
         if saisie == "":
             print("Vous devez entrer un nombre.")
             saisie = input(texte)
@@ -63,7 +61,6 @@ def demander_nombre(message, min_val, max_val):
                     print("Veuillez entrer un nombre entre " + str(min_val) + " et " + str(max_val) + ".")
                     saisie = input(texte)
                 else:
-                    # La saisie est valide
                     valide = True
 
     print("Votre " + message + " est de : " + str(nb))
