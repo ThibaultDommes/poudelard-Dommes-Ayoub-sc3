@@ -1,4 +1,6 @@
 import json
+from univers.maison import repartition_maison
+from univers.personnage import afficher_personnage
 
 from utils.input_utils import demander_choix
 
@@ -10,7 +12,7 @@ def rencontrer_amis(joueur):
     print("Que répondez-vous ?")
     print("1. Bien sûr, assieds-toi !")
     print("2. Désolé, je préfère voyager seul.")
-    c = demander_choix(1, 2)
+    c = demander_choix("Que répondez-vous ?", ["Bien sûr, assieds-toi !", "Désolé, je préfère voyager seul."])
 
     if c == 1:
         print("Ron sourit : — Génial ! Tu verras, Poudlard, c’est incroyable !")
@@ -25,7 +27,7 @@ def rencontrer_amis(joueur):
     print("Que répondez-vous ?")
     print("1. Oui, j’adore apprendre de nouvelles choses !")
     print("2. Euh... non, je préfère les aventures aux bouquins.")
-    c = demander_choix(1, 2)
+    c = demander_choix("Que répondez-vous ?",["1. Oui, j’adore apprendre de nouvelles choses !","2. Euh... non, je préfère les aventures aux bouquins."] )
 
     if c == 1:
         print("Hermione sourit : — Oh, merveilleux ! On aura beaucoup à discuter.")
@@ -41,7 +43,7 @@ def rencontrer_amis(joueur):
     print("1. Je lui serre la main poliment.")
     print("2. Je l’ignore complètement.")
     print("3. Je lui réponds avec arrogance.")
-    c = demander_choix(1, 3)
+    c = demander_choix("Comment réagissez-vous ?", ["1. Je lui serre la main poliment.","2. Je l’ignore complètement.","3. Je lui réponds avec arrogance."])
 
     if c == 1:
         print("Drago esquisse un sourire satisfait. — Sage décision.")
@@ -58,7 +60,7 @@ def rencontrer_amis(joueur):
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print("Tes attributs mis à jour :", joueur["Attributs"])
     print()
-
+rencontrer_amis(joueur)
 
 def mot_de_bienvenue():
     print("Les portes de la Grande Salle s’ouvrent dans un silence solennel...")
@@ -90,9 +92,6 @@ def ceremonie_repartition(joueur):
 
     print("La cérémonie de répartition commence dans la Grande Salle...")
     print("Le Choixpeau magique t’observe longuement avant de poser ses questions :")
-
-    from univers.maison import repartition_maison
-
     maison = repartition_maison(joueur, questions)
     joueur["Maison"] = maison
 
@@ -128,3 +127,15 @@ def installation_salle_commune(joueur, chemin_fichier="../data/maisons.json"):
         print("Les couleurs de votre maison :", couleurs)
 
     print()
+
+    def lancer_chapitre_2(joueur):
+        rencontrer_amis(joueur)
+        mot_de_bienvenue()
+        ceremonie_repartition(joueur)
+        installation_salle_commune(joueur)
+        afficher_personnage(joueur)
+
+        print(" Fin du chapitre 2 : Le voyage vers Poudlard est terminé.")
+        print(" Le chapitre 3 va commencer : place aux cours de magie !")
+        input("Appuie sur Entrée pour continuer...")
+
