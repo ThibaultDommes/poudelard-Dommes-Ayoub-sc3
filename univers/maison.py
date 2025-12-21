@@ -52,9 +52,9 @@ def repartition_maison(joueur, questions):
     scores["Serdaigle"] = scores["Serdaigle"] + attributs["intelligence"]
 
     for q in questions:
-        texte_q = q["texte"]
-        options = q["options"]
-        maisons_associees = q["maisons"]
+        texte_q = q[0]
+        options = q[1]
+        maisons_associees = q[2]
 
         reponse = demander_choix(texte_q, options)
 

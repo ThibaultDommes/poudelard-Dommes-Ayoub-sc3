@@ -1,16 +1,16 @@
 import json
 
-from utils.input_utils import demander_choix
+from chapitres.chapitre_1 import creer_personnage
+from univers.maison import *
+from univers.personnage import *
+from utils.input_utils import *
 
 
 def rencontrer_amis(joueur):
     print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
     print("Un garçon roux entre dans votre compartiment, l’air amical.")
     print("— Salut ! Moi c’est Ron Weasley. Tu veux bien qu’on s’assoie ensemble ?")
-    print("Que répondez-vous ?")
-    print("1. Bien sûr, assieds-toi !")
-    print("2. Désolé, je préfère voyager seul.")
-    c = demander_choix(1, 2)
+    c = demander_choix("Que répondez-vous ?", ["Bien sûr, assieds-toi !", "Désolé, je préfère voyager seul."])
 
     if c == 1:
         print("Ron sourit : — Génial ! Tu verras, Poudlard, c’est incroyable !")
@@ -22,10 +22,7 @@ def rencontrer_amis(joueur):
     print()
     print("Une fille entre ensuite, portant déjà une pile de livres.")
     print("— Bonjour, je m’appelle Hermione Granger. Vous avez déjà lu ‘Histoire de la Magie’ ?")
-    print("Que répondez-vous ?")
-    print("1. Oui, j’adore apprendre de nouvelles choses !")
-    print("2. Euh... non, je préfère les aventures aux bouquins.")
-    c = demander_choix(1, 2)
+    c = demander_choix("Que répondez-vous ?",["1. Oui, j’adore apprendre de nouvelles choses !","2. Euh... non, je préfère les aventures aux bouquins."] )
 
     if c == 1:
         print("Hermione sourit : — Oh, merveilleux ! On aura beaucoup à discuter.")
@@ -37,11 +34,7 @@ def rencontrer_amis(joueur):
     print()
     print("Puis un garçon blond entre avec un air arrogant.")
     print("— Je suis Drago Malefoy. Mieux vaut bien choisir ses amis dès le départ, tu ne crois pas ?")
-    print("Comment réagissez-vous ?")
-    print("1. Je lui serre la main poliment.")
-    print("2. Je l’ignore complètement.")
-    print("3. Je lui réponds avec arrogance.")
-    c = demander_choix(1, 3)
+    c = demander_choix("Comment réagissez-vous ?", ["1. Je lui serre la main poliment.","2. Je l’ignore complètement.","3. Je lui réponds avec arrogance."])
 
     if c == 1:
         print("Drago esquisse un sourire satisfait. — Sage décision.")
@@ -58,7 +51,6 @@ def rencontrer_amis(joueur):
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print("Tes attributs mis à jour :", joueur["Attributs"])
     print()
-
 
 def mot_de_bienvenue():
     print("Les portes de la Grande Salle s’ouvrent dans un silence solennel...")
@@ -90,9 +82,6 @@ def ceremonie_repartition(joueur):
 
     print("La cérémonie de répartition commence dans la Grande Salle...")
     print("Le Choixpeau magique t’observe longuement avant de poser ses questions :")
-
-    from univers.maison import repartition_maison
-
     maison = repartition_maison(joueur, questions)
     joueur["Maison"] = maison
 
@@ -101,14 +90,12 @@ def ceremonie_repartition(joueur):
     print()
 
 
-def installation_salle_commune(joueur, chemin_fichier="../data/maisons.json"):
+def installation_salle_commune(joueur):
     print("Vous suivez les préfets à travers les couloirs du château...")
-
-    fichier = open(chemin_fichier, "r", encoding="utf-8")
-    data = json.load(fichier)
-    fichier.close()
-
     maison = joueur.get("Maison", "")
+
+    with open('data/maisons.json', "r", encoding="utf-8") as fichier :
+        data = json.load(fichier)
 
     if maison == "" or maison not in data:
         print("Erreur : maison inconnue. Impossible d’installer le joueur.")
@@ -128,3 +115,14 @@ def installation_salle_commune(joueur, chemin_fichier="../data/maisons.json"):
         print("Les couleurs de votre maison :", couleurs)
 
     print()
+
+def lancer_chapitre_2(personnage):
+    rencontrer_amis(personnage)
+    mot_de_bienvenue()
+    ceremonie_repartition(personnage)
+    installation_salle_commune(personnage)
+    afficher_personnage(personnage)
+
+    print(" Fin du chapitre 2 : Le voyage vers Poudlard est terminé.")
+    print(" Le chapitre 3 va commencer : place aux cours de magie !")
+    input("Appuie sur Entrée pour continuer...")
