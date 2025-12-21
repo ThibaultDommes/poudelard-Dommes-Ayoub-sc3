@@ -49,12 +49,11 @@ def recevoir_lettre():
     print("Cher(e) élève, vous êtes accepté(e) à Poudlard !")
     print("Souhaitez-vous accepter cette invitation ?")
 
-    # Utilisation de demander_choix pour proposer les deux options
     choix = demander_choix("Que décidez-vous ?", ["Oui, j'accepte", "Non, je refuse"])
 
     if choix == 2:
         print("Vous avez refusé l'aventure. Dommage ! Le hibou s'envole avec votre lettre...")
-        sys.exit(0)  # Arrêt immédiat du programme
+        sys.exit(0)
     else:
         print("Vous acceptez l'invitation ! L'aventure commence !")
 
@@ -62,22 +61,16 @@ def rencontrer_hagrid(personnage):
     print("Hagrid : Salut " + personnage["Prenom"] + "! Je suis venu t’aider à faire vos achats sur le Chemin de Traverse.")
     print("Voulez-vous suivre Hagrid ?")
 
-    # Proposer les deux options
     choix = demander_choix("Votre choix :", ["Oui", "Non"])
 
     if choix == 1:
         print(f"Vous décidez de suivre Hagrid. Il vous entraîne vers le Chemin de Traverse !")
     else:
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui !")
-import json
-import sys
-
-import sys
 
 def acheter_fournitures(personnage):
     print("Bienvenue sur le Chemin de Traverse !")
 
-    # Catalogue interne (liste de dictionnaires)
     catalogue = [
         {"nom": "Baguette magique", "prix": 35},
         {"nom": "Robe de sorcier", "prix": 20},
@@ -89,16 +82,10 @@ def acheter_fournitures(personnage):
         {"nom": "Cape d'invisibilité", "prix": 100}
     ]
 
-    # Objets obligatoires
     obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
-
-    # Inventaire temporaire
     inventaire = []
-
-    # Argent initial
     argent = personnage["Argent"]
 
-    # Achat des objets obligatoires
     while len(obligatoires) > 0:
         print("\nCatalogue des objets disponibles :")
         for i in range(len(catalogue)):
@@ -161,8 +148,8 @@ def acheter_fournitures(personnage):
         print("- " + cle + " : " + str(personnage["Attributs"][cle]))
 
 def lancer_chapitre1():
-   # introduction()
+    introduction()
     personnage= creer_personnage()
-    #recevoir_lettre()
-    #rencontrer_hagrid(personnage)
+    recevoir_lettre()
+    rencontrer_hagrid(personnage)
     acheter_fournitures(personnage)
