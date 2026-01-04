@@ -23,19 +23,6 @@ def demander_texte(message):
 
     return texte
 
-#nom = demander_texte("Entrez le nom de votre personnage : ")
-#print("Nom choisi :", nom)
-
-"""def demander_nombre(message,min_val,max_val):
-    texte = message +" (" +str(min_val)+","+str(max_val)+")"": "
-    nb = int(input(texte))
-    while nb < min_val or nb > max_val :
-        fin = "Veuillez entrer un nombre entre"+ str(min_val) +"et" + str(max_val),"  : "
-        print(fin)
-        nb = int(input(texte))
-    print("Votre " + message + " est de : "+ str(nb))
-    return nb
-"""
 def demander_nombre(message, min_val, max_val):
     texte = message + " (" + str(min_val) + "-" + str(max_val) + ") : "
     saisie = input(texte)
@@ -66,8 +53,6 @@ def demander_nombre(message, min_val, max_val):
     print("Votre " + message + " est de : " + str(nb))
     return nb
 
-#a = demander_nombre("Niveau de courage",0,10)
-
 def demander_choix(message, options):
     print(message)
     for i in range(len(options)):
@@ -93,9 +78,6 @@ def demander_choix(message, options):
             choix = input("Quel est votre choix : ")
 
     return choix_int
-
-#b = demander_choix("Voulez-vous continuer ?", ["Oui", "Non"])
-
 
 def load_fichier(chemin_fichier):
     with open('data.json', 'r', encoding='utf-8') as f:

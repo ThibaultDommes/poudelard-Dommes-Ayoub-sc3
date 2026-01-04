@@ -153,3 +153,4 @@ def lancer_chapitre1():
     recevoir_lettre()
     rencontrer_hagrid(personnage)
     acheter_fournitures(personnage)
+    return personnage

@@ -5,7 +5,6 @@ from univers.maison import *
 from univers.personnage import *
 from utils.input_utils import *
 
-
 def rencontrer_amis(joueur):
     print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
     print("Un garçon roux entre dans votre compartiment, l’air amical.")
@@ -83,7 +82,7 @@ def ceremonie_repartition(joueur):
     print("La cérémonie de répartition commence dans la Grande Salle...")
     print("Le Choixpeau magique t’observe longuement avant de poser ses questions :")
     maison = repartition_maison(joueur, questions)
-    joueur["Maison"] = maison
+    joueur["maison"] = maison
 
     print("Le Choixpeau s’exclame :", maison, "!!!")
     print("Tu rejoins les élèves de", maison, "sous les acclamations !")
